@@ -23,11 +23,15 @@ func _ready():
 	player.connect("switch_tracks", self, "_on_Player_switch_track")
 	
 	
-func _on_Player_switch_track(dir):
+func movePlayer(dir):
 	var newKey = playerTrackPosKey + dir
 	if newKey >= 0 && newKey < trackPosX.size():
 		playerTrackPosKey = newKey
 		player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
+	
+	
+func _on_Player_switch_track(dir):
+	movePlayer(dir)
 
 
 func _on_SpawnEnemy_timeout():
@@ -35,3 +39,11 @@ func _on_SpawnEnemy_timeout():
 	var inst = ENEMY_SCENE.instance()
 	inst.position = Vector2(trackPosX[key], ENEMY_Y)
 	enemyWrap.add_child(inst)
+
+
+func _on_LeftControl_pressed():
+	movePlayer(-1)
+
+
+func _on_RightControl_pressed():
+	movePlayer(1)
