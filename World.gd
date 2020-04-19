@@ -1,12 +1,15 @@
 extends Node
 
+const ENEMY_SCENE = preload("res://Enemy.tscn")
 const PLAYER_Y = 666
+const ENEMY_Y = -64
 
 var trackPosX = []
 var playerTrackPosKey
 
 onready var tracksWrap = $DodgeTracks
 onready var player = $Player
+onready var enemyWrap = $Enemies
 
 
 func _ready():
@@ -25,3 +28,10 @@ func _on_Player_switch_track(dir):
 	if newKey >= 0 && newKey < trackPosX.size():
 		playerTrackPosKey = newKey
 		player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
+
+
+func _on_SpawnEnemy_timeout():
+	var key = rand_range(0, trackPosX.size() - 1)
+	var inst = ENEMY_SCENE.instance()
+	inst.position = Vector2(trackPosX[key], ENEMY_Y)
+	enemyWrap.add_child(inst)

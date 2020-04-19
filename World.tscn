@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://DodgeTrack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
+
+[node name="SpawnEnemy" type="Timer" parent="."]
+process_mode = 0
+autostart = true
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -37,6 +40,4 @@ position = Vector2( 324, 0 )
 position = Vector2( 72, 333 )
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 180, 37 )
+[connection signal="timeout" from="SpawnEnemy" to="." method="_on_SpawnEnemy_timeout"]
