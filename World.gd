@@ -63,7 +63,7 @@ func _on_Player_player_death():
 
 
 func _on_SpawnEnemy_timeout():
-	var key = rand_range(0, trackPosX.size() - 1)
+	var key = randi() % trackPosX.size()
 	var inst = ENEMY_SCENE.instance()
 	inst.position = Vector2(trackPosX[key], ENEMY_Y)
 	enemyWrap.add_child(inst)
