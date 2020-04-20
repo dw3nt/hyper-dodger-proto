@@ -45,7 +45,7 @@ func setCanMove(val):
 	canMove = val		
 
 
-func _on_Collision_body_entered(body):
+func _on_EnemyDetection_body_entered(body):
 	if body.is_in_group("enemy"):
 		emit_signal("player_death")
 		queue_free()
