@@ -19,6 +19,7 @@ onready var pointsLabel = $UI/BottomContainer/BottomData/HBoxContainer/PointsLab
 onready var leftControl = $TouchControls/LeftControl
 onready var rightControl = $TouchControls/RightControl
 onready var pointsTimer = $IncreasePoints
+onready var enemySpawnTimer = $SpawnEnemy
 
 
 func _ready():
@@ -66,6 +67,10 @@ func _on_SpawnEnemy_timeout():
 	var inst = ENEMY_SCENE.instance()
 	inst.position = Vector2(trackPosX[key], ENEMY_Y)
 	enemyWrap.add_child(inst)
+	
+	if points > 100:
+		var newWait = 1 - (points / 100 * 0.1)	
+		enemySpawnTimer.wait_time = max(newWait, 0.2)
 
 
 func _on_LeftControl_pressed():
