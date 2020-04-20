@@ -40,7 +40,8 @@ func movePlayer(dir):
 	var newKey = playerTrackPosKey + dir
 	if newKey >= 0 && newKey < trackPosX.size():
 		playerTrackPosKey = newKey
-		player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
+		player.destinationPoint = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
+		player.playMoveAnimation()
 		
 		
 func setPoints(val):
