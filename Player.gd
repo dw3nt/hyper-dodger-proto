@@ -1,6 +1,7 @@
 extends Node2D
 
 signal switch_tracks(direction)
+signal player_death()
 
 
 func _physics_process(delta):
@@ -12,4 +13,5 @@ func _physics_process(delta):
 
 func _on_Collision_body_entered(body):
 	if body.is_in_group("enemy"):
+		emit_signal("player_death")
 		queue_free()

@@ -1,10 +1,13 @@
 extends Node
 
-const STD_POINT_INCREASE = 10
 const ENEMY_SCENE = preload("res://Enemy.tscn")
+const GAME_OVER_SCENE = preload("res://GameOver.tscn")
+
+const STD_POINT_INCREASE = 10
 const PLAYER_Y = 666
 const ENEMY_Y = -64
 
+var gameOver = false
 var points setget setPoints
 var trackPosX = []
 var playerTrackPosKey
@@ -13,6 +16,9 @@ onready var tracksWrap = $DodgeTracks
 onready var player = $Player
 onready var enemyWrap = $Enemies
 onready var pointsLabel = $UI/BottomContainer/BottomData/HBoxContainer/PointsLabel
+onready var leftControl = $TouchControls/LeftControl
+onready var rightControl = $TouchControls/RightControl
+onready var pointsTimer = $IncreasePoints
 
 
 func _ready():
@@ -24,6 +30,7 @@ func _ready():
 	playerTrackPosKey = ceil(trackPosX.size() / 2)
 	player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
 	player.connect("switch_tracks", self, "_on_Player_switch_track")
+	player.connect("player_death", self, "_on_Player_player_death")
 	
 	self.points = 0
 	
@@ -42,6 +49,16 @@ func setPoints(val):
 	
 func _on_Player_switch_track(dir):
 	movePlayer(dir)
+	
+	
+func _on_Player_player_death():
+	pointsTimer.stop()
+	leftControl.visible = false
+	rightControl.visible = false
+	
+	var inst = GAME_OVER_SCENE.instance()
+	add_child(inst)
+	inst.score = points
 
 
 func _on_SpawnEnemy_timeout():

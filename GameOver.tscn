@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GameOver.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+length = 1.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TouchScreenButton:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 180, 370 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = -38.5
+margin_right = 75.0
+margin_bottom = 38.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 26.0
+margin_right = 124.0
+margin_bottom = 77.0
+custom_constants/separation = 32
+
+[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 98.0
+margin_bottom = 31.0
+text = "Game Over
+Press to restart"
+align = 1
+valign = 1
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 63.0
+margin_right = 98.0
+margin_bottom = 77.0
+align = 1
+valign = 1
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "fade_in"
+anims/fade_in = SubResource( 1 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+shape = SubResource( 2 )
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
