@@ -12,7 +12,7 @@ onready var starsWrapper = $Stars
 func _ready():
 	screenWidth = ProjectSettings.get("display/window/size/width")
 	screenHeight = ProjectSettings.get("display/window/size/height")
-	for i in 5:
+	for i in 15:
 		spawnStar(Vector2(randi() % screenWidth, randi() % screenHeight))
 		
 		
