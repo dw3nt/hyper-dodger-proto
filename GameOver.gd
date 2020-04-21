@@ -1,8 +1,16 @@
 extends Control
 
+signal retry_game
+signal main_menu_pressed
+
 var score = 0 setget setScore
 
-onready var scoreLabel = $CenterContainer/VBoxContainer/ScoreLabel
+onready var scoreLabel = $CenterContainer/VBoxContainer/GameOverWrap/ScoreLabel
+onready var anim = $Anim
+
+
+func playFadeIn():
+	anim.play("fade_in")
 
 
 func setScore(val):
@@ -10,5 +18,13 @@ func setScore(val):
 	score = val
 
 
-func _on_TouchScreenButton_pressed():
-	get_tree().reload_current_scene()
+func _on_Retry_pressed():
+	emit_signal("retry_game")
+	
+	
+func _on_MainMenu_pressed():
+	pass # TO DO: go to main menu without resetting the background
+
+
+func _on_Quit_pressed():
+	get_tree().quit()

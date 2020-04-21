@@ -9,6 +9,7 @@ var canMove = true
 var destinationPoint = null
 
 onready var anim = $Anim
+onready var enemyDetect = $EnemyDetection
 
 
 func _physics_process(delta):
@@ -41,6 +42,17 @@ func signalMove(dir):
 	emit_signal("switch_tracks", dir)
 	
 	
+func initAlive():
+	visible = true
+	canMove = true
+	enemyDetect.set_deferred("monitoring", true)
+	
+func initDeath():
+	visible = false
+	canMove = false
+	enemyDetect.set_deferred("monitoring", false)
+	
+	
 func setCanMove(val):
 	canMove = val		
 
@@ -48,4 +60,3 @@ func setCanMove(val):
 func _on_EnemyDetection_body_entered(body):
 	if body.is_in_group("enemy"):
 		emit_signal("player_death")
-		queue_free()
