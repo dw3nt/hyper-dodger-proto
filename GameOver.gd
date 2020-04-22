@@ -9,8 +9,12 @@ onready var scoreLabel = $CenterContainer/VBoxContainer/GameOverWrap/ScoreLabel
 onready var anim = $Anim
 
 
-func playFadeIn():
+func startUp():
 	anim.play("fade_in")
+	
+	
+func tearDown():
+	anim.play("fade_out")
 
 
 func setScore(val):

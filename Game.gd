@@ -1,6 +1,6 @@
 extends Node
 
-signal go_to_menu
+signal gameplay_ended
 
 const ENEMY_SCENE = preload("res://Enemy.tscn")
 const GAME_OVER_SCENE = preload("res://GameOver.tscn")
@@ -10,24 +10,21 @@ const STD_POINT_INCREASE = 10
 const PLAYER_Y = 666
 const ENEMY_Y = -64
 const COUNTDOWN_START = 3
-
 var points setget setPoints
 var trackPosX = []
 var playerTrackPosKey
 var countdown setget setCountdown
 
 onready var uiWrap = $UI
-onready var gameOver = $GameOver
 onready var tracksWrap = $DodgeTracks
 onready var player = $Player
 onready var enemyWrap = $Enemies
 onready var pointsLabel = $UI/BottomContainer/BottomData/HBoxContainer/PointsLabel
 onready var countdownLabel = $UI/CenterContainer/CountdownLabel
-onready var leftControl = $TouchControls/LeftControl
-onready var rightControl = $TouchControls/RightControl
 onready var pointsTimer = $IncreasePoints
 onready var enemySpawnTimer = $SpawnEnemy
 onready var gameStartCountdown = $GameStartCountdown
+onready var anim = $Anim
 
 
 func _ready():
@@ -36,36 +33,33 @@ func _ready():
 		trackPosX.push_back(track.position.x)
 		
 	trackPosX.sort()	# in case track nodes ever get out of order
-	playerTrackPosKey = ceil(trackPosX.size() / 2)
-	player.canMove = false
-	player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
+	resetPlayer()
 	player.connect("switch_tracks", self, "_on_Player_switch_track")
 	player.connect("player_death", self, "_on_Player_player_death")
 	
-	gameOver.connect("retry_game", self, "_on_GameOver_retry_game")
-	gameOver.connect("main_menu_pressed", self, "_on_GameOver_main_menu_pressed")
 	
-	
-func startGame():
+func startUp():
+	anim.play("fade_in")
 	clearEnemies()
+	player.initAlive()
+	resetPlayer()
+	
+	self.points = 0
+	
+	self.countdown = COUNTDOWN_START
 	countdownLabel.visible = true
-	gameOver.visible = false
-	leftControl.visible = true
-	rightControl.visible = true
+	gameStartCountdown.start()
+	
+	
+func tearDown():
+	anim.play("fade_out")
+	player.initDeath()
 	
 	enemySpawnTimer.stop()
 	pointsTimer.stop()
-	self.countdown = COUNTDOWN_START
-	self.points = 0
 	
-	player.initAlive()
-	playerTrackPosKey = ceil(trackPosX.size() / 2)
-	player.canMove = false
-	player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
-	gameStartCountdown.start()
 	
-
-func enableGameplay():
+func startGameplay():
 	countdownLabel.visible = false
 	gameStartCountdown.stop()
 	
@@ -74,21 +68,10 @@ func enableGameplay():
 	pointsTimer.start()
 	
 	
-func stopGame():
-	clearEnemies()
-	countdownLabel.visible = true
-	gameOver.visible = false
-	leftControl.visible = false
-	rightControl.visible = false
-	
-	enemySpawnTimer.stop()
-	pointsTimer.stop()
-	self.countdown = COUNTDOWN_START
-	self.points = 0
-
-	player.initDeath()
-	
-	emit_signal("go_to_menu")
+func resetPlayer():
+	player.canMove = false
+	playerTrackPosKey = ceil(trackPosX.size() / 2)
+	player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
 	
 	
 func movePlayer(dir):
@@ -123,15 +106,7 @@ func _on_Player_switch_track(dir):
 	
 	
 func _on_Player_player_death():
-	player.initDeath()
-	
-	enemySpawnTimer.stop()
-	pointsTimer.stop()
-	leftControl.visible = false
-	rightControl.visible = false
-
-	gameOver.score = points
-	gameOver.playFadeIn()
+	emit_signal("gameplay_ended")
 
 
 func _on_SpawnEnemy_timeout():
@@ -160,12 +135,4 @@ func _on_IncreasePoints_timeout():
 func _on_StartCountdown_timeout():
 	self.countdown -= 1
 	if countdown < 0:
-		enableGameplay()
-
-
-func _on_GameOver_retry_game():
-	startGame()
-	
-	
-func _on_GameOver_main_menu_pressed():
-	emit_signal("go_to_menu")
+		startGameplay()

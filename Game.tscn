@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://DodgeTrack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
-[ext_resource path="res://GameOver.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 90, 370 )
@@ -12,6 +11,62 @@ extents = Vector2( 90, 370 )
 bg_color = Color( 0, 0, 0, 1 )
 border_width_top = 2
 border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_out"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -118,8 +173,9 @@ margin_right = 56.0
 margin_bottom = 14.0
 text = "Points: 0"
 
-[node name="GameOver" parent="." instance=ExtResource( 4 )]
-visible = false
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 4 )
+anims/fade_out = SubResource( 3 )
 [connection signal="timeout" from="GameStartCountdown" to="." method="_on_StartCountdown_timeout"]
 [connection signal="timeout" from="SpawnEnemy" to="." method="_on_SpawnEnemy_timeout"]
 [connection signal="timeout" from="IncreasePoints" to="." method="_on_IncreasePoints_timeout"]
