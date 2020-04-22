@@ -23,7 +23,7 @@ func _on_Retry_pressed():
 	
 	
 func _on_MainMenu_pressed():
-	pass # TO DO: go to main menu without resetting the background
+	emit_signal("main_menu_pressed")
 
 
 func _on_Quit_pressed():

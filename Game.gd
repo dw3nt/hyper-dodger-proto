@@ -1,5 +1,7 @@
 extends Node
 
+signal go_to_menu
+
 const ENEMY_SCENE = preload("res://Enemy.tscn")
 const GAME_OVER_SCENE = preload("res://GameOver.tscn")
 const PLAYER_SCENE = preload("res://Player.tscn")
@@ -41,6 +43,7 @@ func _ready():
 	player.connect("player_death", self, "_on_Player_player_death")
 	
 	gameOver.connect("retry_game", self, "_on_GameOver_retry_game")
+	gameOver.connect("main_menu_pressed", self, "_on_GameOver_main_menu_pressed")
 	
 	
 func startGame():
@@ -56,6 +59,9 @@ func startGame():
 	self.points = 0
 	
 	player.initAlive()
+	playerTrackPosKey = ceil(trackPosX.size() / 2)
+	player.canMove = false
+	player.position = Vector2(trackPosX[playerTrackPosKey], PLAYER_Y)
 	gameStartCountdown.start()
 	
 
@@ -66,6 +72,23 @@ func enableGameplay():
 	player.canMove = true
 	enemySpawnTimer.start()
 	pointsTimer.start()
+	
+	
+func stopGame():
+	clearEnemies()
+	countdownLabel.visible = true
+	gameOver.visible = false
+	leftControl.visible = false
+	rightControl.visible = false
+	
+	enemySpawnTimer.stop()
+	pointsTimer.stop()
+	self.countdown = COUNTDOWN_START
+	self.points = 0
+
+	player.initDeath()
+	
+	emit_signal("go_to_menu")
 	
 	
 func movePlayer(dir):
@@ -142,3 +165,7 @@ func _on_StartCountdown_timeout():
 
 func _on_GameOver_retry_game():
 	startGame()
+	
+	
+func _on_GameOver_main_menu_pressed():
+	emit_signal("go_to_menu")
