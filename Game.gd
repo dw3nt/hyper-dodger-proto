@@ -7,7 +7,7 @@ const GAME_OVER_SCENE = preload("res://GameOver.tscn")
 const PLAYER_SCENE = preload("res://Player.tscn")
 
 const STD_POINT_INCREASE = 10
-const PLAYER_Y = 666
+const PLAYER_Y = 636
 const ENEMY_Y = -64
 const COUNTDOWN_START = 3
 var points setget setPoints

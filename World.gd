@@ -30,6 +30,7 @@ func _on_MainMenu_play_game():
 	
 func _on_Game_gameplay_ended():
 	switchScreens(gameOver)
+	gameOver.score = game.points
 
 
 func _on_GameOver_retry_game():

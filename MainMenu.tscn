@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://resources/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://resources/TitleFont.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -61,6 +63,7 @@ tracks/1/keys = {
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -71,46 +74,57 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -180.0
+margin_left = -199.0
 margin_top = -370.0
-margin_right = 180.0
+margin_right = 199.0
 margin_bottom = 370.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 117.0
-margin_top = 285.0
-margin_right = 243.0
-margin_bottom = 455.0
+margin_left = 48.0
+margin_top = 144.0
+margin_right = 350.0
+margin_bottom = 595.0
 custom_constants/separation = 100
 
 [node name="Title" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 126.0
-margin_bottom = 14.0
+margin_right = 302.0
+margin_bottom = 239.0
 custom_constants/separation = 16
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer/Title"]
-margin_right = 126.0
-margin_bottom = 14.0
-text = "Hyper Dodger Proto"
+margin_right = 302.0
+margin_bottom = 239.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.815686, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.968627, 1, 0, 1 )
+text = "Hyper 
+Dodger 
+Proto"
+align = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 114.0
-margin_right = 126.0
-margin_bottom = 170.0
+margin_left = 52.0
+margin_top = 339.0
+margin_right = 248.0
+margin_bottom = 451.0
+rect_min_size = Vector2( 196, 0 )
+size_flags_horizontal = 4
 custom_constants/separation = 16
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
-margin_right = 126.0
-margin_bottom = 20.0
+margin_right = 196.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 48 )
 text = "Play"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
-margin_top = 36.0
-margin_right = 126.0
-margin_bottom = 56.0
+margin_top = 64.0
+margin_right = 196.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 48 )
 text = "Quit"
 
 [node name="Anim" type="AnimationPlayer" parent="."]
