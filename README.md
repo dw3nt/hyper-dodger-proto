@@ -32,3 +32,11 @@ FontStruction “Thirteen Pixel Fonts”
 (http://fontstruct.com/fontstructions/show/761985) by “30100flo”, which is
 licensed under a Creative Commons Attribution Share Alike license
 (http://creativecommons.org/licenses/by-sa/3.0/).
+
+### Music
+The music used in this game is not my own, and is licensed under Creative Commons Attribution 3.0 Unported  (CC BY 3.0) license. The music is credited in the game, but it felt appropriate to credit the music here as well.
+
+**White Boy (Black Soul) Instrumental**
+([https://www.soundclick.com/music/songInfo.cfm?songID=13984655](https://www.soundclick.com/music/songInfo.cfm?songID=13984655)) by Anttis Ludoe is licensed
+under a Creative Commons Attribution 3.0 Unported
+([http://anttismusic.blogspot.com/](http://anttismusic.blogspot.com/)).

@@ -8,7 +8,12 @@ const LINK_MAP = {
 	"FontLicenseLink": "https://creativecommons.org/licenses/by-sa/3.0/",
 	"Graph35pxFontLink": "http://fontstruct.com/fontstructions/show/664062",
 	"ThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/761985",
-	"3DThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/851388"
+	"3DThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/851388",
+	
+	#Music
+	"MusicAuthorLink": "http://anttismusic.blogspot.com/",
+	"MusicLicenseLink": "https://creativecommons.org/licenses/by/3.0/",
+	"WhiteBoyInstrumental": "https://www.soundclick.com/music/songInfo.cfm?songID=13984655",
 }
 
 onready var anim = $Anim
