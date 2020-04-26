@@ -1,6 +1,7 @@
 extends Control
 
 signal play_game
+signal credit_pressed
 
 onready var anim = $Anim
 
@@ -19,3 +20,7 @@ func _on_Quit_pressed():
 
 func _on_Play_pressed():
 	emit_signal("play_game")
+
+
+func _on_Credit_pressed():
+	emit_signal("credit_pressed")
