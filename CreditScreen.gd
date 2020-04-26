@@ -2,7 +2,21 @@ extends Control
 
 signal credit_main_menu
 
+const LINK_MAP = {
+	# Fonts
+	"FontAuthorLink": "https://fontstruct.com/fontstructors/623307/30100flo",
+	"FontLicenseLink": "https://creativecommons.org/licenses/by-sa/3.0/",
+	"Graph35pxFontLink": "http://fontstruct.com/fontstructions/show/664062",
+	"ThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/761985",
+	"3DThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/851388"
+}
+
 onready var anim = $Anim
+
+
+func _ready():
+	for node in get_tree().get_nodes_in_group("external_link"):
+		node.connect("pressed", self, "_on_ExternalLink_pressed", [ LINK_MAP[node.name] ])
 
 
 func startUp():
@@ -15,3 +29,7 @@ func tearDown():
 
 func _on_MainMenu_pressed():
 	emit_signal("credit_main_menu")
+
+
+func _on_ExternalLink_pressed(link):
+	OS.shell_open(link)
