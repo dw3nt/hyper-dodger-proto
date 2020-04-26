@@ -37,6 +37,5 @@ licensed under a Creative Commons Attribution Share Alike license
 The music used in this game is not my own, and is licensed under Creative Commons Attribution 3.0 Unported  (CC BY 3.0) license. The music is credited in the game, but it felt appropriate to credit the music here as well.
 
 **White Boy (Black Soul) Instrumental**
-([https://www.soundclick.com/music/songInfo.cfm?songID=13984655](https://www.soundclick.com/music/songInfo.cfm?songID=13984655)) by Anttis Ludoe is licensed
-under a Creative Commons Attribution 3.0 Unported
-([http://anttismusic.blogspot.com/](http://anttismusic.blogspot.com/)).
+([https://www.soundclick.com/music/songInfo.cfm?songID=13984655](https://www.soundclick.com/music/songInfo.cfm?songID=13984655)) by Anttis Ludoe ([http://anttismusic.blogspot.com/](http://anttismusic.blogspot.com/))is licensed
+under a Creative Commons Attribution 3.0 Unported ([https://creativecommons.org/licenses/by/3.0/](https://creativecommons.org/licenses/by/3.0/)).
