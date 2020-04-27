@@ -6,6 +6,7 @@ onready var mainMenu = $Screens/MainMenu
 onready var game = $Screens/Game
 onready var gameOver = $Screens/GameOver
 onready var credits = $Screens/CreditScreen
+onready var buttonClickSound = $ButtonClickSound
 
 
 func _ready():
@@ -19,6 +20,12 @@ func _ready():
 	switchScreens(mainMenu)
 	
 	
+func playButtonClick():
+	if buttonClickSound.is_playing():
+		buttonClickSound.stop()
+	buttonClickSound.play()
+	
+	
 func switchScreens(goToScreen):
 	if activeScreen:
 		activeScreen.tearDown()
@@ -28,10 +35,12 @@ func switchScreens(goToScreen):
 	
 	
 func _on_MainMenu_play_game():
+	playButtonClick()
 	switchScreens(game)
 	
 	
 func _on_MainMenu_credit_pressed():
+	playButtonClick()
 	switchScreens(credits)
 	
 	
@@ -41,12 +50,15 @@ func _on_Game_gameplay_ended():
 
 
 func _on_GameOver_retry_game():
+	playButtonClick()
 	switchScreens(game)
 
 
 func _on_GameOver_main_menu_pressed():
+	playButtonClick()
 	switchScreens(mainMenu)
 	
 	
 func _onCredits_credit_main_menu():
+	playButtonClick()
 	switchScreens(mainMenu)

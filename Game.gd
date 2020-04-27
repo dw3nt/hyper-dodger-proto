@@ -25,6 +25,7 @@ onready var pointsTimer = $IncreasePoints
 onready var enemySpawnTimer = $SpawnEnemy
 onready var gameStartCountdown = $GameStartCountdown
 onready var anim = $Anim
+onready var countdownSound = $CountdownSound
 
 
 func _ready():
@@ -43,6 +44,7 @@ func startUp():
 	clearEnemies()
 	player.initAlive()
 	resetPlayer()
+	countdownSound.play()
 	
 	self.points = 0
 	
@@ -114,6 +116,7 @@ func _on_SpawnEnemy_timeout():
 	var inst = ENEMY_SCENE.instance()
 	inst.position = Vector2(trackPosX[key], ENEMY_Y)
 	enemyWrap.add_child(inst)
+	inst.spawnSound.play()
 	
 	if points > 100:
 		var newWait = 1 - (points / 100 * 0.1)	
@@ -133,6 +136,11 @@ func _on_IncreasePoints_timeout():
 
 
 func _on_StartCountdown_timeout():
+	if countdown > 0:
+		if countdownSound.is_playing():
+			countdownSound.stop()
+		countdownSound.play()
+	
 	self.countdown -= 1
 	if countdown < 0:
 		startGameplay()

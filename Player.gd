@@ -10,6 +10,8 @@ var destinationPoint = null
 
 onready var anim = $Anim
 onready var enemyDetect = $EnemyDetection
+onready var deathSound = $DeathSound
+onready var moveSound = $MoveSound
 
 
 func _physics_process(delta):
@@ -39,6 +41,10 @@ func playMoveAnimation():
 func signalMove(dir):
 	if anim.is_playing():
 		anim.stop()
+	if moveSound.is_playing():
+		moveSound.stop()
+	moveSound.play()
+	
 	emit_signal("switch_tracks", dir)
 	
 	
@@ -59,4 +65,8 @@ func setCanMove(val):
 
 func _on_EnemyDetection_body_entered(body):
 	if body.is_in_group("enemy"):
-		emit_signal("player_death")
+		deathSound.play()
+
+
+func _on_DeathSound_finished():
+	emit_signal("player_death")

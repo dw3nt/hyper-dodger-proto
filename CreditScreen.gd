@@ -10,10 +10,14 @@ const LINK_MAP = {
 	"ThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/761985",
 	"3DThirteenPixelFontsFontLink": "http://fontstruct.com/fontstructions/show/851388",
 	
-	#Music
+	# Music
 	"MusicAuthorLink": "http://anttismusic.blogspot.com/",
 	"MusicLicenseLink": "https://creativecommons.org/licenses/by/3.0/",
 	"WhiteBoyInstrumental": "https://www.soundclick.com/music/songInfo.cfm?songID=13984655",
+	
+	# SFX
+	"StumpyStrustLabel": "https://opengameart.org/content/ui-sounds",
+	"sauer2Label": "https://opengameart.org/content/alien-sounds"
 }
 
 onready var anim = $Anim
