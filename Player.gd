@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const SPEED = 10
+const BASE_ROTATE = 0.01745
 
 signal switch_tracks(direction)
 signal player_death()
@@ -8,10 +9,15 @@ signal player_death()
 var canMove = true
 var destinationPoint = null
 
+onready var baseSprite = $Base
 onready var anim = $Anim
 onready var enemyDetect = $EnemyDetection
 onready var deathSound = $DeathSound
 onready var moveSound = $MoveSound
+
+
+func _process(delta):
+	baseSprite.rotate(BASE_ROTATE)
 
 
 func _physics_process(delta):
