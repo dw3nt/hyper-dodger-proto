@@ -72,6 +72,7 @@ func setCanMove(val):
 func _on_EnemyDetection_body_entered(body):
 	if body.is_in_group("enemy"):
 		deathSound.play()
+		anim.play("death")
 
 
 func _on_DeathSound_finished():
