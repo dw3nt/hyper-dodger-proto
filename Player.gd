@@ -42,19 +42,19 @@ func moveToDestinationPoint():
 	
 func playMoveAnimation():
 	anim.play("move")
+	moveSound.play()
 	
 	
 func signalMove(dir):
 	if anim.is_playing():
 		anim.stop()
-	if moveSound.is_playing():
-		moveSound.stop()
-	moveSound.play()
 	
 	emit_signal("switch_tracks", dir)
 	
 	
 func initAlive():
+	modulate = Color(1, 1, 1, 1)
+	scale = Vector2(1, 1)
 	visible = true
 	canMove = true
 	enemyDetect.set_deferred("monitoring", true)
@@ -71,6 +71,7 @@ func setCanMove(val):
 
 func _on_EnemyDetection_body_entered(body):
 	if body.is_in_group("enemy"):
+		canMove = false
 		deathSound.play()
 		anim.play("death")
 
