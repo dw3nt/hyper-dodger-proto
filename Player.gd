@@ -5,6 +5,7 @@ const BASE_ROTATE = 0.01745
 
 signal switch_tracks(direction)
 signal player_death()
+signal player_collided()
 
 var canMove = true
 var destinationPoint = null
@@ -74,6 +75,7 @@ func _on_EnemyDetection_body_entered(body):
 		canMove = false
 		deathSound.play()
 		anim.play("death")
+		emit_signal("player_collided")
 
 
 func _on_DeathSound_finished():

@@ -36,6 +36,7 @@ func _ready():
 	trackPosX.sort()	# in case track nodes ever get out of order
 	resetPlayer()
 	player.connect("switch_tracks", self, "_on_Player_switch_track")
+	player.connect("player_collided", self, "_onPlayer_player_collided")
 	player.connect("player_death", self, "_on_Player_player_death")
 	
 	
@@ -106,6 +107,10 @@ func setCountdown(val):
 	
 func _on_Player_switch_track(dir):
 	movePlayer(dir)
+	
+	
+func _onPlayer_player_collided():
+	pointsTimer.stop()
 	
 	
 func _on_Player_player_death():
