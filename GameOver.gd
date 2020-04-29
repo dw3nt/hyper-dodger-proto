@@ -5,7 +5,8 @@ signal main_menu_pressed
 
 var score = 0 setget setScore
 
-onready var scoreLabel = $CenterContainer/VBoxContainer/GameOverWrap/ScoreLabel
+onready var highscoreLabel = $CenterContainer/VBoxContainer/GameOverWrap/ScoresContainer/HighscoreLabel
+onready var scoreLabel = $CenterContainer/VBoxContainer/GameOverWrap/ScoresContainer/ScoreLabel
 onready var anim = $Anim
 
 
@@ -18,7 +19,17 @@ func tearDown():
 
 
 func setScore(val):
+	var scoreData = DataSaver.readScores()
+	var highscore = scoreData["highscore"]
+	
 	scoreLabel.text = "Score: " + str(val)
+	if val > highscore:
+		highscoreLabel.text = "New Highscore!"
+		DataSaver.writeScores(val, val)
+	else:
+		highscoreLabel.text = "Highscore: " + str(highscore)
+		DataSaver.writeScores(val, highscore)
+	
 	score = val
 
 

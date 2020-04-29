@@ -85,12 +85,12 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_right = 302.0
-margin_bottom = 367.0
+margin_bottom = 399.0
 custom_constants/separation = 64
 
 [node name="GameOverWrap" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 302.0
-margin_bottom = 127.0
+margin_bottom = 159.0
 custom_constants/separation = 32
 
 [node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer/GameOverWrap"]
@@ -102,18 +102,32 @@ text = "Game Over"
 align = 1
 valign = 1
 
-[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/GameOverWrap"]
+[node name="ScoresContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/GameOverWrap"]
 margin_top = 103.0
 margin_right = 302.0
-margin_bottom = 127.0
+margin_bottom = 159.0
+custom_constants/separation = 8
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/GameOverWrap/ScoresContainer"]
+margin_right = 302.0
+margin_bottom = 24.0
+text = "Placeholder"
+align = 1
+valign = 1
+
+[node name="HighscoreLabel" type="Label" parent="CenterContainer/VBoxContainer/GameOverWrap/ScoresContainer"]
+margin_top = 32.0
+margin_right = 302.0
+margin_bottom = 56.0
+text = "Placeholder"
 align = 1
 valign = 1
 
 [node name="ButtonsWrap" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_left = 52.0
-margin_top = 191.0
-margin_right = 248.0
-margin_bottom = 367.0
+margin_left = 53.0
+margin_top = 223.0
+margin_right = 249.0
+margin_bottom = 399.0
 rect_min_size = Vector2( 196, 0 )
 size_flags_horizontal = 4
 custom_constants/separation = 16
