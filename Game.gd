@@ -66,6 +66,7 @@ func startGameplay():
 	gameStartCountdown.stop()
 	
 	player.canMove = true
+	enemySpawnTimer.wait_time = 1
 	enemySpawnTimer.start()
 	pointsTimer.start()
 	
