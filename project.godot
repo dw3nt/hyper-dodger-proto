@@ -20,6 +20,10 @@ run/main_scene="res://World.tscn"
 boot_splash/image="res://assets/splash.png"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout=""
+
 [display]
 
 window/size/width=360

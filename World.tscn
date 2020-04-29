@@ -56,6 +56,7 @@ volume_db = 10.0
 visible = false
 
 [node name="MainMenu" parent="Screens" instance=ExtResource( 1 )]
+visible = false
 
 [node name="GameOver" parent="Screens" instance=ExtResource( 5 )]
 visible = false
