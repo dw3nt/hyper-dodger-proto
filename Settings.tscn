@@ -1,0 +1,204 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/SubTitleFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Settings.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopWrap" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 103.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TopWrap"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 344.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 1 )
+text = "Settings"
+align = 1
+
+[node name="CenterWrap" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -164.0
+margin_right = 125.0
+margin_bottom = 164.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsWrap" type="VBoxContainer" parent="CenterWrap"]
+margin_top = 8.0
+margin_right = 250.0
+margin_bottom = 320.0
+custom_constants/separation = 112
+
+[node name="MusicWrap" type="VBoxContainer" parent="CenterWrap/SettingsWrap"]
+margin_right = 250.0
+margin_bottom = 100.0
+custom_constants/separation = 32
+
+[node name="MusicToggle" type="CheckBox" parent="CenterWrap/SettingsWrap/MusicWrap"]
+margin_left = 27.0
+margin_right = 223.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+pressed = true
+text = "Enable Music"
+
+[node name="MusicVolumeWrap" type="VBoxContainer" parent="CenterWrap/SettingsWrap/MusicWrap"]
+margin_top = 56.0
+margin_right = 250.0
+margin_bottom = 100.0
+
+[node name="MusicVolumeLabel" type="Label" parent="CenterWrap/SettingsWrap/MusicWrap/MusicVolumeWrap"]
+margin_right = 250.0
+margin_bottom = 24.0
+text = "Music Volume"
+align = 1
+
+[node name="MusicVolume" type="HSlider" parent="CenterWrap/SettingsWrap/MusicWrap/MusicVolumeWrap"]
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 250, 0 )
+value = 100.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
+
+[node name="SfxWrap" type="VBoxContainer" parent="CenterWrap/SettingsWrap"]
+margin_top = 212.0
+margin_right = 250.0
+margin_bottom = 312.0
+custom_constants/separation = 32
+
+[node name="SfxToggle" type="CheckBox" parent="CenterWrap/SettingsWrap/SfxWrap"]
+margin_left = 40.0
+margin_right = 210.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+pressed = true
+text = "Enable SFX"
+
+[node name="SfxVolumeWrap" type="VBoxContainer" parent="CenterWrap/SettingsWrap/SfxWrap"]
+margin_top = 56.0
+margin_right = 250.0
+margin_bottom = 100.0
+
+[node name="SfxVolumeLabel" type="Label" parent="CenterWrap/SettingsWrap/SfxWrap/SfxVolumeWrap"]
+margin_right = 250.0
+margin_bottom = 24.0
+text = "SFX Volume"
+align = 1
+
+[node name="SfxVolume" type="HSlider" parent="CenterWrap/SettingsWrap/SfxWrap/SfxVolumeWrap"]
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 250, 0 )
+value = 100.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="BottomWrap" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -68.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="BottomWrap"]
+margin_left = 81.0
+margin_top = 16.0
+margin_right = 277.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 196, 36 )
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+[connection signal="pressed" from="BottomWrap/MainMenu" to="." method="_on_MainMenu_pressed"]
