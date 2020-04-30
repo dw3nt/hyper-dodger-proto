@@ -25,3 +25,4 @@ shape = SubResource( 1 )
 [node name="SpawnSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -10.0
+bus = "Sfx"

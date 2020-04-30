@@ -182,7 +182,8 @@ anims/fade_out = SubResource( 4 )
 
 [node name="CountdownSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = 10.0
+volume_db = 5.0
+bus = "Sfx"
 [connection signal="timeout" from="GameStartCountdown" to="." method="_on_StartCountdown_timeout"]
 [connection signal="timeout" from="SpawnEnemy" to="." method="_on_SpawnEnemy_timeout"]
 [connection signal="timeout" from="IncreasePoints" to="." method="_on_IncreasePoints_timeout"]

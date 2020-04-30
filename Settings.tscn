@@ -137,7 +137,8 @@ margin_top = 28.0
 margin_right = 250.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 250, 0 )
-value = 100.0
+min_value = -80.0
+max_value = 0.0
 rounded = true
 tick_count = 10
 ticks_on_borders = true
@@ -172,7 +173,8 @@ margin_top = 28.0
 margin_right = 250.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 250, 0 )
-value = 100.0
+min_value = -80.0
+max_value = 0.0
 tick_count = 10
 ticks_on_borders = true
 
@@ -190,9 +192,9 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="Button" parent="BottomWrap"]
-margin_left = 81.0
+margin_left = 82.0
 margin_top = 16.0
-margin_right = 277.0
+margin_right = 278.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 196, 48 )
 size_flags_horizontal = 4
@@ -201,4 +203,8 @@ text = "Main Menu"
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
+[connection signal="pressed" from="CenterWrap/SettingsWrap/MusicWrap/MusicToggle" to="." method="_on_MusicToggle_pressed"]
+[connection signal="value_changed" from="CenterWrap/SettingsWrap/MusicWrap/MusicVolumeWrap/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="pressed" from="CenterWrap/SettingsWrap/SfxWrap/SfxToggle" to="." method="_on_SfxToggle_pressed"]
+[connection signal="value_changed" from="CenterWrap/SettingsWrap/SfxWrap/SfxVolumeWrap/SfxVolume" to="." method="_on_SfxVolume_value_changed"]
 [connection signal="pressed" from="BottomWrap/MainMenu" to="." method="_on_MainMenu_pressed"]

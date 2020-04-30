@@ -35,9 +35,9 @@ func initSettings():
 	settingsFile = File.new()
 	if !settingsFile.file_exists(SETTINGS_PATH):
 		musicEnabled = true
-		musicVol = 100
+		musicVol = 0
 		sfxEnabled = true
-		sfxVol = 100
+		sfxVol = 0
 		writeSettings(musicEnabled, musicVol, sfxEnabled, sfxVol)
 	else:
 		var settingsData = readSettings()
